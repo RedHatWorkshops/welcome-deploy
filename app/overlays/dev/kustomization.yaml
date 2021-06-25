@@ -10,6 +10,3 @@ patchesJson6902:
     kind: Deployment
     name: welcome-app
     version: v1
-images:
-- name: quay.io/redhatworkshops/welcome-app
-  newTag: d35ad0

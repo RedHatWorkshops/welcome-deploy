@@ -45,6 +45,6 @@ spec:
         tea login add -i --url $(params.giteasrv) --name gitea --user $(params.username) --password $(params.password)
         tea repos
         pwd
-        ls -l .
+        ls -l
   workspaces:
   - name: source
