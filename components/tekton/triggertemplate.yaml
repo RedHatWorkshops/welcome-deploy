@@ -27,15 +27,15 @@ spec:
         name: welcome-app-pipeline
       params:
         - name: GIT_REPO
-          value: git@github.com:christianh814/welcome-app.git
+          value: http://developer:openshift@gitea-http.scm.svc.cluster.local:3000/developer/welcome-app
         - name: GIT_REF
-          value: master
+          value: main
         - name: IMAGE_DEST
-          value: quay.io/redhatworkshops/welcome-app
+          value: image-registry.openshift-image-registry.svc:5000/welcome-pipeline/welcome-app
         - name: SRC_DOCKERFILE
           value: Containerfile
         - name: DEPLOY_REPO
-          value: git@github.com:christianh814/welcome-deploy.git
+          value: http://developer:openshift@gitea-http.scm.svc.cluster.local:3000/developer/welcome-deploy
         - name: DEPLOY_REF
           value: main
         - name: DEV_OVERLAY_DIR

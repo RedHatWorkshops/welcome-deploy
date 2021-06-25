@@ -4,6 +4,4 @@ metadata:
   name: pipeline
   annotations:
     argocd.argoproj.io/sync-wave: "2"
-secrets:
-  - name: quaycred
-  - name: gitsshkey
+secrets: {}

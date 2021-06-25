@@ -119,14 +119,14 @@ spec:
   - name: commit-to-dev
     params:
     - name: GIT_USER_NAME
-      value: christianh814
+      value: developer
     - name: GIT_USER_EMAIL
-      value: chernand@redhat.com
+      value: developer@example.com
     - name: GIT_SCRIPT
       value: |
         git add -A .
         git commit -am "Run $(tasks.set-image-tag.results.tagref): Updating image to $(tasks.set-image-tag.results.tag) on $(params.DEV_OVERLAY_DIR)"
-        GIT_SSH_COMMAND="ssh -i /tekton/home/.ssh/id_gitsshkey -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git push origin HEAD:main
+        git push origin HEAD:main
     taskRef:
       name: git-cli
       kind: ClusterTask
@@ -153,15 +153,15 @@ spec:
   - name: branch-to-prod
     params:
     - name: GIT_USER_NAME
-      value: christianh814
+      value: developer
     - name: GIT_USER_EMAIL
-      value: chernand@redhat.com
+      value: developer@example.com
     - name: GIT_SCRIPT
       value: |
         git checkout -b $(tasks.set-image-tag.results.tagref)
         git add -A .
         git commit -am "Run $(tasks.set-image-tag.results.tagref): Updating image to $(tasks.set-image-tag.results.tag) on $(params.PROD_OVERLAY_DIR)"
-        GIT_SSH_COMMAND="ssh -i /tekton/home/.ssh/id_gitsshkey -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git push origin HEAD:$(tasks.set-image-tag.results.tagref)
+        git push origin HEAD:$(tasks.set-image-tag.results.tagref)
     taskRef:
       name: git-cli
       kind: ClusterTask
@@ -175,9 +175,13 @@ spec:
   - name: pr-to-prod
     params:
     - name: username
-      value: christianh814
+      value: developer
+    - name: password
+      value: openshift
     - name: email
-      value: chernand@redhat.com
+      value: developer@example.com
+    - name: giteasrv
+      value: http://gitea-http.scm.svc.cluster.local:3000
     - name: title
       value: Updating image to $(tasks.set-image-tag.results.tag)
     - name: body

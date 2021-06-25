@@ -13,28 +13,27 @@ spec:
     type: string
     default: ""
     description: The body of the PR request
-  - name: github-secret
+  - name: password
     type: string
-    default: githubtoken
-    description: github token to use
+    default: ""
+    description: password for tea cli
   - name: username
     type: string
     default: ""
-    description: GitHub UserID
+    description: Gitea username
   - name: email
     type: string
     default: ""
-    description: GitHub Email
+    description: Gitea Email
+  - name: giteasrv
+    type: string
+    default: ""
+    description: Gitea server instance
   steps:
-    - name: run-commands
-      image: docker.io/michaelin/github-cli:latest
+    - name: run-tea-cli
+      image: quay.io/redhatworkshops/gitea-cli:latest
       workingDir: $(workspaces.source.path)
       env:
-        - name: GITHUB_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: $(params.github-secret)
-              key: token
         - name: GITHUB_USER
           value: $(params.username)
         - name: GITHUB_EMAIL
@@ -42,6 +41,10 @@ spec:
       script: |
         #!/usr/bin/env bash
         # git create PR
-        gh pr create -t "$(params.title)" -b "$(params.body)"
+        #gh pr create -t "$(params.title)" -b "$(params.body)"
+        tea login add -i --url $(params.giteasrv) --name gitea --user $(params.username) --password $(params.password)
+        tea repos
+        pwd
+        ls -l .
   workspaces:
   - name: source
