@@ -40,11 +40,7 @@ spec:
           value: $(params.email)
       script: |
         #!/usr/bin/env bash
-        # git create PR
-        #gh pr create -t "$(params.title)" -b "$(params.body)"
-        tea login add -i --url $(params.giteasrv) --name gitea --user $(params.username) --password $(params.password)
-        tea repos
-        pwd
-        ls -l
+        tea login add -i --url "$(params.giteasrv)" --name gitea --user "$(params.username)" --password "$(params.password)"
+        tea pr create -t "$(params.title)" -d "$(params.body)"
   workspaces:
   - name: source
