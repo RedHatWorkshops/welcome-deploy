@@ -6,8 +6,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "6"
 spec:
   params:
-  - name: git-repo-url
-    value: $(body.repository.url)
   - name: git-repo-name
     value: $(body.repository.name)
   - name: git-revision

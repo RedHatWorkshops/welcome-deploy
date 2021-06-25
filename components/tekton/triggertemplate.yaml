@@ -6,8 +6,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "6"
 spec:
   params:
-  - name: git-repo-url
-    description: The git repository url
   - name: git-revision
     description: The git revision
     default: master
