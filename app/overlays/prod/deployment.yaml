@@ -1,3 +1,3 @@
 - op: replace
   path: /spec/template/spec/containers/0/image
-  value: quay.io/redhatworkshops/welcome-app:latest
+  value: image-registry.openshift-image-registry.svc:5000/welcome-pipeline/welcome-app:latest
