@@ -48,6 +48,6 @@ spec:
           value: $(params.email)
       script: |
         #!/usr/bin/env bash
-        curl --header "Content-Type: application/json" -u "$(params.username)":"$(params.password)" --request POST -d "{\"title\": \"$(params.title)\", \"head\": \"$(params.tagref)\", \"base\":\"$(params.gitref)\", \"body\": \"$(params.body)\"}" "$(params.giteasrv)"/api/v1/repos/developer/welcome-deploy/pulls
+        curl -s --header "Content-Type: application/json" -u "$(params.username)":"$(params.password)" --request POST -d "{\"title\": \"$(params.title)\", \"head\": \"$(params.tagref)\", \"base\":\"$(params.gitref)\", \"body\": \"$(params.body)\"}" "$(params.giteasrv)"/api/v1/repos/developer/welcome-deploy/pulls
   workspaces:
   - name: source
