@@ -29,6 +29,14 @@ spec:
     type: string
     default: ""
     description: Gitea server instance
+  - name: gitref
+    type: string
+    default: ""
+    description: Gitea branch to pr to
+  - name: tagref
+    type: string
+    default: ""
+    description: Gitea branch to pr from
   steps:
     - name: run-tea-cli
       image: quay.io/redhatworkshops/gitea-cli:latest
@@ -40,7 +48,6 @@ spec:
           value: $(params.email)
       script: |
         #!/usr/bin/env bash
-        tea login add -i --url "$(params.giteasrv)" --name gitea --user "$(params.username)" --password "$(params.password)"
-        tea pr create -t "$(params.title)" -d "$(params.body)"
+        curl --header "Content-Type: application/json" -u "$(params.username)":"$(params.password)" --request POST -d "{\"title\": \"$(params.title)\", \"head\": \"$(params.tagref)\", \"base\":\"$(params.gitref)\", \"body\": \"$(params.body)\"}" "$(params.giteasrv)"/api/v1/repos/developer/welcome-deploy/pulls
   workspaces:
   - name: source

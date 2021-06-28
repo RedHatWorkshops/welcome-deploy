@@ -184,6 +184,10 @@ spec:
       value: http://gitea-http.scm.svc.cluster.local:3000
     - name: title
       value: Updating image to $(tasks.set-image-tag.results.tag)
+    - name: gitref
+      value: $(params.GIT_REF)
+    - name: tagref
+      value: $(tasks.set-image-tag.results.tagref)
     - name: body
       value: |
         Run $(tasks.set-image-tag.results.tagref) - Updating image to $(tasks.set-image-tag.results.tag) on $(params.PROD_OVERLAY_DIR)
