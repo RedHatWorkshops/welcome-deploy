@@ -189,8 +189,7 @@ spec:
     - name: tagref
       value: $(tasks.set-image-tag.results.tagref)
     - name: body
-      value: |
-        Run $(tasks.set-image-tag.results.tagref) - Updating image to $(tasks.set-image-tag.results.tag) on $(params.PROD_OVERLAY_DIR)
+      value: Updating image to $(tasks.set-image-tag.results.tag) on $(params.PROD_OVERLAY_DIR)
     taskRef:
       name: task-create-pr
     runAfter:
