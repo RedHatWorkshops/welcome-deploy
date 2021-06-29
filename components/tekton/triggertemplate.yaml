@@ -22,7 +22,7 @@ spec:
         name: welcome-app-pipeline
       params:
         - name: GIT_REPO
-          value: http://developer:openshift@gitea-http.scm.svc.cluster.local:3000/developer/welcome-app
+          value: http://developer:openshift@gitea.scm.svc.cluster.local:3000/developer/welcome-app
         - name: GIT_REF
           value: main
         - name: IMAGE_DEST
@@ -30,7 +30,7 @@ spec:
         - name: SRC_DOCKERFILE
           value: Containerfile
         - name: DEPLOY_REPO
-          value: http://developer:openshift@gitea-http.scm.svc.cluster.local:3000/developer/welcome-deploy
+          value: http://developer:openshift@gitea.scm.svc.cluster.local:3000/developer/welcome-deploy
         - name: DEPLOY_REF
           value: main
         - name: DEV_OVERLAY_DIR
