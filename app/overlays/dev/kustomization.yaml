@@ -10,3 +10,6 @@ patchesJson6902:
     kind: Deployment
     name: welcome-app
     version: v1
+images:
+- name: docker.io/massivezh/welcome-app
+  newTag: 4f65ca
